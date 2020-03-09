@@ -10,6 +10,7 @@ namespace CSharp
         // keys in Dictionary must be unique
         // assure dictionary does not contain key before adding'it
         // assure dictionary contain key before requesting'it
+        // Used when search is made by key string.
         public Dictionary()
         {
             Customer9 c1 = new Customer9() { ID = 101, Name = "Mark", Salary = 5000 };
