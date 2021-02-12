@@ -5,7 +5,7 @@ using System.Text;
 namespace CSharp
 {
     // built-in types in C# (value types like below)
-    // Reference tyoes (interfaces, classes, delegates, arrays)
+    // Reference types (interfaces, classes, delegates, arrays, string)
     public class Types
     {// theese are value types
 

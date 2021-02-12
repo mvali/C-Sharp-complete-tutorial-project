@@ -18,7 +18,10 @@ namespace CSharp
         // abstract method can not have implementation (void print(){..}) as it is incomplete
         public abstract void Print();
 
-        public void PrintSimple() { }// allowed with implementation if method not marked as abstract
+        // allowed with implementation if method not marked as abstract
+        public void PrintSimple() {
+            Console.WriteLine("print simple");
+        }
     }
 
     // must implement all abstract members within base class

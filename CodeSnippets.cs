@@ -8,7 +8,19 @@ namespace CSharp
     class CodeSnippets
     {
         // type "prop" and press TAB twice for property insert (expansion snippet)
-        public int MyProperty { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+
+        //type "propfull" and pres TAB twice for full property details
+        public string FullInfo
+        {
+            get {
+                //"Tim Corey (test@test.com)"
+                return $"{ FirstName } { LastName } ({ EmailAddress })";
+            }
+        }
+
 
         public CodeSnippets()
         {

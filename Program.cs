@@ -41,7 +41,10 @@ namespace CSharp
             //var mop = new MethodOptionalParameters();
             //var csp = new CodeSnippets();
             //var dct = new Dictionary();
+            //var sextension = ExtensionMethod.ExtensionMethodUsage();
+
             var lcc = new ListCollectionClass();
+
 
             Console.ReadKey();
         }

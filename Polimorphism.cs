@@ -44,7 +44,7 @@ namespace CSharp
         {
             //base.PrintFullName(); // calls the base method
             Console.WriteLine(firstName + " " + lastName + "- overriden partTime");
-    }
+        }
     }
     public class FullTimeEmployeeP : EmployeeP {
         public override void PrintFullName() { Console.WriteLine(firstName + " " + lastName + "- overriden fullTime"); }

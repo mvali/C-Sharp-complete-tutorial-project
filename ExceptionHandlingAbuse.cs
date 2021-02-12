@@ -38,6 +38,9 @@ namespace CSharp
             {
                 Console.WriteLine(ex.Message);
             }
+            finally // if there is a problem in try section like: a file remains opened remember to close'it here as it executes every time
+            {// or just use "using" it's less code and add more functionality
+            }
         }
 
         // using exception handling to implement ptgram logical flow is bad and considered exception abuse

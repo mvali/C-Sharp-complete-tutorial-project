@@ -34,6 +34,7 @@ namespace CSharp
             Value parameters : create a copy of parameter passed, modifications does not affect each other
             Reference parameters : "ref" keyword all changes will be reflected on sent parameter
             Out parameter : "out" keyword when you want a method to return more then one value
+                        The out parameter does not pass the property.
             parameter Arrays : "param" keyword: parameter as array like comma separated values, array or no arguments.
                                 - should be the past last one in method declaration, only one "param" is allowed
             */
