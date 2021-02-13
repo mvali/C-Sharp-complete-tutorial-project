@@ -6,6 +6,26 @@ namespace CSharp
 {
     // built-in types in C# (value types like below)
     // Reference types (interfaces, classes, delegates, arrays, string)
+
+    /* value types are stored in STACK = LIFO principle, 
+                                        access Fast, 
+                                        Static memory alocation, 
+                                        Variable can Not be resized
+                                        accessed only to owner thread
+                                        used by one thread of execution
+                                        local variables wiped out once out of scope
+                                        contains values for Integral Types, Primitive Types and References to the Objects
+                                        NET Runtime throws exception “StackOverflowException” when stack space is exhausted
+     reference types are stored in HEAP = data can be stored and removed in any order
+                                          access Slow
+                                          Dynamic memory allocation
+                                          Variables can be resized
+                                          visible/accessible to all the threads
+                                          used by all the parts of the application
+                                          Garbage Collector monitor the heap allocation space
+                                                only collects heap memory since objects are only created in heap
+
+    */
     public class Types
     {// theese are value types
 
@@ -48,6 +68,8 @@ namespace CSharp
             var bigNumberSplit = 123_456_789_012_345_678;
 
             Console.WriteLine(@"c:\Vali");
+            Console.WriteLine($"str value is: {str}");
+            Console.WriteLine(String.Format("decimal value of {0}, str is equal to:{1}", de, str));
 
             Console.WriteLine("bigNumber= {0} bigNumberSplit(123_456_789_012_345_678)= {1}", bigNumber, bigNumberSplit);
         }
