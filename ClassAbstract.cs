@@ -13,7 +13,23 @@ namespace CSharp
     {
         // fields are allowed inside abstract class
         // can have access modifiers (are private by default)
-        private int _id;
+        private Guid _id;
+        public Guid ID { get { return this._id; } }
+
+        // abstract properties can not have implementation
+        // derived classes must overwrite this property
+        public abstract int PropertyAbstract { get; }
+
+        // can have constructor that will initialize fields
+        // abtract class constructor it will called before child class constructor
+        // use protected access modifier because it is called when a child is instantiated, (abstract can not be instantiated on it-s own)
+        protected Customer2() 
+        {
+            _id = Guid.NewGuid();
+
+            // abstract method CAN be called inside an abstract class constructor (it will be defined in child and called with his child implementatin by parent abstract constructor)
+            Print();
+        }
 
         // abstract method can not have implementation (void print(){..}) as it is incomplete
         public abstract void Print();
@@ -27,6 +43,11 @@ namespace CSharp
     // must implement all abstract members within base class
     class ClassAbstract : Customer2
     {
+        // implementation of abstract property declared in parent abstract class
+        public override int PropertyAbstract {
+            get;
+        }
+
         public override void Print()
         {// abstract method from base class
             Console.WriteLine("Print Method");

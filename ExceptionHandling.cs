@@ -11,6 +11,7 @@ namespace CSharp
         // catch - handles the execution
         // finally - free resources that where holded inside try block
         //          - will allways execute even if no exception is triggered
+        //          - if exception occures in finally original exception from try block is lost
         // innerException will retain original exception if passed as parameter on throw command;
         public ExceptionHandling()
         {
