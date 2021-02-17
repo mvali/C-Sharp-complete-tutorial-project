@@ -1,0 +1,106 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\CSharp\\CSharp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\AssemblyTwo.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\AssemblyTwo.csproj",
+        "projectName": "AssemblyTwo",
+        "projectPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\AssemblyTwo.csproj",
+        "projectJsonPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\project.json",
+        "packagesPath": "C:\\Users\\Valentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\obj\\",
+        "projectStyle": "ProjectJson",
+        "configFilePaths": [
+          "C:\\Users\\Valentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        }
+      },
+      "dependencies": {
+        "Microsoft.NETCore": "[5.0.0, )",
+        "Microsoft.NETCore.Portable.Compatibility": "[1.0.0, )"
+      },
+      "frameworks": {
+        "dotnet50": {
+          "imports": [
+            "portable-net452"
+          ]
+        }
+      },
+      "supports": {
+        "dnxcore50.app": {},
+        "net46.app": {}
+      }
+    },
+    "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\CSharp\\CSharp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\CSharp\\CSharp.csproj",
+        "projectName": "CSharp",
+        "projectPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\CSharp\\CSharp.csproj",
+        "packagesPath": "C:\\Users\\Valentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\CSharp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Valentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {
+              "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\AssemblyTwo.csproj": {
+                "projectPath": "C:\\Users\\Valentin\\Documents\\Visual Studio 2017\\Projects\\CSharp\\AssemblyTwo\\AssemblyTwo.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

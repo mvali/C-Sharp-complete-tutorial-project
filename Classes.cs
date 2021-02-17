@@ -20,9 +20,15 @@ namespace CSharp
         // public = access modifier
         // sealed class - class will not be used as base(parent) for another class
         // abstract - class can not be instanciated, used only as BaseClass, can not be sealed
-        // immutable class = members not exposed, can not be changed after instanciated (properties do not have a set method)
+        // immutable class = members not exposed, can not be changed after instanciated (properties do not have a set method)(sample below)
+        //          class with private constructor can NOT be inherited
+        //          can not create an object of class that has private constructor
+        //          used for calling static members from them 
+        // concrete class - standard class. Called concrete to diferentiate between standard and abstract class
+        // nested class - class defined in body of another class
+
         public Customer() : this("No FirstName", "No Last name provided")
-        {
+        {// this is a public constructor
         }
         public Customer(string firstName, string lastName)
         {
@@ -42,7 +48,18 @@ namespace CSharp
             // called by garbage collector when tries to clean object from memory
             // do not take any parameters and do not return a value
         }
+        //static members allowed in non-static classes
+        public static void StaticMethod() { /*do something, no return*/ }
     }
+    public static class StaticClass
+    {
+        // non-static method/property NOT allowed in static class
+        //public void NonStaticMethod() { }
+
+        // ONLY static method/property is allowed inside static class
+        public static void StaticMethod() { /*code without return statement*/ }
+    }
+
     class Classes
     {
         public static void MainC()
@@ -59,6 +76,10 @@ namespace CSharp
             Circle c2 = new Circle(6);
             double area2 = c2.CalculateArea();
             Console.WriteLine("Area1={0} Area2={1}", area1, area2);
+
+            // usage scenario
+            ClassImmutable.GetArticle("name1", "article1");
+            ClassImmutable.GetArticleStr("name1", "article1");
         }
     }
     class Circle
@@ -145,6 +166,20 @@ namespace CSharp
         public new void Method2()
         {
             Console.WriteLine("Derived - Method2");
+        }
+    }
+
+    class ClassWithPrivateConstructor
+    {
+        private ClassWithPrivateConstructor()
+        {
+        }
+
+        public class NestedClass : ClassWithPrivateConstructor
+        {
+            public NestedClass() : base()
+            {
+            }
         }
     }
 }

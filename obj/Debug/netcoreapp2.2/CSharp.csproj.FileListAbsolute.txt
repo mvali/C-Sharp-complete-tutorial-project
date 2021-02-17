@@ -12,3 +12,4 @@ C:\Users\Valentin\Documents\Visual Studio 2017\Projects\CSharp\CSharp\obj\Debug\
 C:\Users\Valentin\Documents\Visual Studio 2017\Projects\CSharp\CSharp\bin\Debug\netcoreapp2.2\AssemblyTwo.dll
 C:\Users\Valentin\Documents\Visual Studio 2017\Projects\CSharp\CSharp\bin\Debug\netcoreapp2.2\AssemblyTwo.pdb
 C:\Users\Valentin\Documents\Visual Studio 2017\Projects\CSharp\CSharp\obj\Debug\netcoreapp2.2\CSharp.csproj.CopyComplete
+C:\Users\Valentin\Documents\Visual Studio 2017\Projects\CSharp\CSharp\obj\Debug\netcoreapp2.2\CSharp.genruntimeconfig.cache
