@@ -10,6 +10,7 @@ namespace CSharp
         // class data refresented by fields
         string _firstName;
         string _lastName;
+        public int PropertyInt { get; set; }
 
         // class behaviour represented by methods
         // constructor (ctor) will have the same name as the class

@@ -10,7 +10,8 @@ namespace CSharp
 
     // default is integer data type
     //public enum Gender : short
-    public enum Gender
+    //is public by default
+    enum Gender
     {
         // if not specified first will start with 0
         // if first valie is specified(1) the next will be +1 (2,3)
@@ -18,7 +19,7 @@ namespace CSharp
         Male = 3,
         Female = 23
     }
-    public enum Season
+    enum Season
     {
         Winter=1,
         Spring=2

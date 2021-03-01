@@ -22,7 +22,7 @@ namespace CSharp
             Console.WriteLine("cat{0}/{1}={2} rest%= {3}", Numerator, Denominator, cat, rest);
 
             //ternary operator ?:
-            var is10 = Numerator == 10 ? true : false;
+            var is10 = Numerator == 10 ? true : false; // translate to: if(Numerator == 10) { is10=true; } else { is10=false; }
 
             // nullable values
             int? iVal = null;
@@ -32,6 +32,7 @@ namespace CSharp
             int iVall = iVal ?? 0; // iVal must be nullable (like int?)
             Console.WriteLine("iVal ?? 0 = {0}", iVall);
 
+            //XOR Logical exclusive OR ^
             Console.WriteLine(true ^ true);    // output: False
             Console.WriteLine(true ^ false);   // output: True
             Console.WriteLine(false ^ true);   // output: True

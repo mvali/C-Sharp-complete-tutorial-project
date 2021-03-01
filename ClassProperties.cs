@@ -11,14 +11,18 @@ namespace CSharp
     {
         public ClassProperties()
         {
-            Student s1 = new Student();
+            Kid s1 = new Kid();
             s1.ID = -101;
             s1.Name = null;
             //s1.PassMark = -100;// set is not defined, field cannot be set
             Console.WriteLine("ID={0} Name={1} PassMark={2}", s1.ID, s1.Name, s1.PassMark);
+
+            // sample for virtual property
+            DerivedClassProp instance = new DerivedClassProp() { Id = 2, Name = "behnoud" };
+            Console.WriteLine(instance.Name); // will write "test" because property "Name" was overwritten in child class
         }
     }
-    class Student
+    class Kid
     {
         // never expose fields as public
         //public int ID;
@@ -27,6 +31,7 @@ namespace CSharp
         private int _PassMark; // Read only
         private int _Code; // Write only
         public string Email { get; set; }// compiler will set the internal property and logic
+        public virtual string NameV { get; set; } // child class can override the property get;set;
 
 
         public int ID
@@ -69,4 +74,22 @@ namespace CSharp
             set { this._Code = value; }
         }
     }
+
+    public class BaseClassProp
+    {
+        public int Id { get; set; }
+        public virtual string Name { get; set; }
+    }
+    public class DerivedClassProp : BaseClassProp
+    {
+        // will override the parent property
+        public override string Name
+        {
+            get { return base.Name; }
+            set { base.Name = "test"; }
+        }
+    }
+
+
+
 }

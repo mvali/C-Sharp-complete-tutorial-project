@@ -8,17 +8,27 @@ namespace CSharp
     // classes structures interfaces delegates enums = Types (accessModifiers: public, internal)
     // fields, properties, constructors, methods = Type Members (all access modifiers)
 
-    // access modifiers: private, protected, internal, protected internal, public
+    // access modifiers: public private, protected, internal, protected internal
 
     /*
-    Private - only in containing class
     Public  - no restrictions
+    Private - only in containing class
     Protected - Within containing types (classes structures interfaces delegates enums)
                 and types derived from containing type (protected=base, child has access)
     Internal - Anywhere in the containing assembly (CSharp in this case)
     Protected Internal - Anywhere in the containing assembly (project)
                         and from within a derived(child) class in any other assembly
     */
+    /* according https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers
+public:     accessed in the same assembly or another assembly that references it.
+private:    accessed in the same class or struct.
+protected:  accessed in the same class, or in a class that is derived from that class.
+internal:   accessed in the same assembly, but not from another assembly.
+protected internal: accessed in the assembly in which it's declared, or from within a derived class in another assembly.
+private protected:  accessed only within its declaring assembly, by code in the same class or in a type that is derived from that class     */
+
+    // default access modifiers for each type: https://stackoverflow.com/a/3175697
+
     class AccesModifiers
     {
         // Customer5._id; inaccessible: field is private

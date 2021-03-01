@@ -10,29 +10,29 @@ namespace CSharp
     - constructors
     - methods
     */ // see below Structs class
-       /*
-       - Struct is a value type - Class is a reference type
-       - struct is stored on Stack - Class on heap
-       - value type is destroyed immediate when scope is lost, 
-           Refernce type: only reference variable is destroyed, object refered is later destroyed by garbage colleector
-       - structs can not have destructors
-       - structs can not be inherit from class, can inherit Interfaces
-       - structs can not inherit from a struct. Structs are sealed types
-       - structs constructors must have parameters, classes can have no parameters(implicit parameters are assumed in this case)
-        */
-       /*
-  Struct cannot have a default constructor (a constructor without parameters) or a destructor.
-  Structs are value types and are copied on assignment.
-  Structs are value types while classes are reference types.
-  Structs can be instantiated without using a new operator.
-  A struct cannot inherit from another struct or class, and it cannot be the base of a class. All structs inherit directly from System.ValueType, which inherits from System.Object.
-  Struct cannot be a base class(sealed). So, Struct types cannot abstract and are always implicitly sealed.
-  Abstract and sealed modifiers are not allowed and struct member cannot be protected or protected internals.
-  Function members in a struct cannot be abstract or virtual, and the override modifier is allowed only to the override methods inherited from System.ValueType.
-  Struct does not allow the instance field declarations to include variable initializers. But, static fields of a struct are allowed to include variable initializers.
-  A struct can implement interfaces.
-  A struct can be used as a nullable type and can be assigned a null value.
-        */
+    /*
+    - Struct is a value type - Class is a reference type
+    - struct is stored on Stack - Class on heap
+    - value type is destroyed immediate when scope is lost, 
+        Refernce type: only reference variable is destroyed, object refered is later destroyed by garbage colleector
+    - structs can not have destructors
+    - structs can not be inherit from class, can inherit Interfaces
+    - structs can not inherit from a struct. Structs are sealed types
+    - structs constructors must have parameters, classes can have no parameters(implicit parameters are assumed in this case)
+     */
+    /*
+Struct cannot have a default constructor (a constructor without parameters) or a destructor.
+Structs are value types and are copied on assignment.
+Structs are value types while classes are reference types.
+Structs can be instantiated without using a new operator.
+A struct cannot inherit from another struct or class, and it cannot be the base of a class(sealed type). All structs inherit directly from System.ValueType, which inherits from System.Object.
+Struct cannot be a base class(sealed). So, Struct types cannot abstract and are always implicitly sealed.
+Abstract and sealed modifiers are not allowed and struct member cannot be protected or protected internals.
+Function members in a struct cannot be abstract or virtual, and the override modifier is allowed only to the override methods inherited from System.ValueType.
+Struct does not allow the instance field declarations to include variable initializers. But, static fields of a struct are allowed to include variable initializers.
+A struct can implement interfaces.
+A struct can be used as a nullable type and can be assigned a null value.
+     */
     class Structs
     {
         struct Location
@@ -68,6 +68,10 @@ namespace CSharp
                 Name = "Rob"
             };
             c3.PrintDetails();
+
+            MyStruct myStruct = "text1";
+            Console.WriteLine(myStruct.s);
+            Console.WriteLine(myStruct.length);
         }
     }
 
@@ -102,5 +106,18 @@ namespace CSharp
         }
 
     }
+
+    //use an implicit operator that converts the string value to a struct value
+    public struct MyStruct
+    {
+        public string s;
+        public int length;
+
+        public static implicit operator MyStruct(string value)
+        {
+            return new MyStruct() { s = value, length = value.Length };
+        }
+    }
+
 
 }

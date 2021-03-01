@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharp
 {
-    // execute async and om many threads for faster response
+    // execute async on many threads for faster response
     // if any portion of an operation is asynchronous, the entire operation is asynchronous
     class AsynchronousProgramming
     {

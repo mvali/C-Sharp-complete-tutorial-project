@@ -27,8 +27,8 @@ namespace CSharp
     // interface members are public by default (do not allow access modifiers "public" )
     public interface ICustomer
     {
-        // interface can not have fields
-        //int ID;
+        // interface can not have fields - it will be implemented automatically on inherited child - it is only as defition here
+        public int Property { get; set; }
 
         // interface can not containg implementation
         void Print();

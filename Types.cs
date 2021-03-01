@@ -50,7 +50,7 @@ namespace CSharp
         // decimal used in financial as it can represent 0.1 exact without fractions like float/double do
         decimal decVal = 0; // does not support NAN
 
-        // string type
+        // string type = reference type
         string str = "\"Vali\\"; // escape characters  or use: @"string here"
 
         public Types()
