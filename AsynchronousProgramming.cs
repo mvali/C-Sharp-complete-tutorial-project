@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace CSharp
 {
-    // execute async on many threads for faster response
+    // execute async on many threads for faster response 
     // if any portion of an operation is asynchronous, the entire operation is asynchronous
+    // if Method(Task) is defined async then the parent interface must be async.
+    // Can not have 2 Methods with same name on same Class (one sync, one async)
+    // Can NOT convert a sync method to async. You must write a different method
+    // Compiler can NOT manage ref and out parameters.
+    // In async there is no concept of void return type, each method returns a mechanism for signaling completion of the asynchronous work. (Task.CompletedTask, Task.FromResult(retValue))
+    // interfaces should always be declared async -> ensures an async model on entire app
+    // unit test mocks need to implement interfaces with no need of async calls You can use: Task.CompletedTask or Task.FromResult<T>(T result)
+    // to be able to use async Task, await calls on .ToList -> EF must be installed as ToListAsync is available in EntityFramework (at least now(2021) )
+
+    // Async methods can be authored in three different ways:
+    // async Task MyMethod() { }                               // creates a method that can be awaited, but does NOT return any value
+    // async Task<T> MyReturningMethod { return default(T); }  // creates a method that can be awaited, and returns a value of the type T,
+    // async void MyFireAndForgetMethod() { }                  // allows for fire and forget methods, and cannot be awaited
+
     class AsynchronousProgramming
     {
         /*actions:1.Pour a cup of coffee.
@@ -19,6 +33,8 @@ namespace CSharp
 
         static async Task Main(string[] args)
         {
+            MyLibrary.AsyncUnitTesting();
+
             ClassCoffee cup = PourCoffee();
             Console.WriteLine("coffee is ready");
 
@@ -282,6 +298,164 @@ namespace CSharp
             }
         }
 
+        // Example mock implementation for testing. Moq is not smart enough to generate a non-null completed
+        // task by default, so you will need to explicitly mock out all methods
+        public static void AsyncUnitTesting()
+        {/*
+            Mock<IMyPlugin> mockPlugin = new Mock<IMyPlugin>();
+
+            // When a constant value is returned
+            mockPlugin.Setup(x => x.DoStuffAsync(It.IsAny<CancellationToken>()).Returns(Task.CompletedTask);
+            mockPlugin.Setup(x => x.DoMoreAsync(It.IsAny<CancellationToken>()).ReturnsAsync(1);
+
+            // When a dynamic value is returned
+            mockPlugin.Setup(x => x.DoStuffAsync(It.IsAny<CancellationToken>()).Returns(() =>
+            {
+                DoStuffImpl();
+                return Task.CompletedTask;
+            });
+            mockPlugin.Setup(x => x.DoMoreAsync(It.IsAny<CancellationToken>()).Returns(() =>
+            {
+                DoMoreImpl();
+                return Task.FromResult(1);
+            }); */
+        }
+
+
+
+
+        public interface IInterfaceAsync
+        {
+            Task MethodAsync(CancellationToken cancellationToken);
+            Task<decimal> DecimalAsync(CancellationToken cancellationToken);
+            Task<int> FunctionAsync(CancellationToken cancellationToken, int defaultValue = 0);
+        }
+        public class ClassAsyncFromI : IInterfaceAsync
+        {
+            // main entry point of application
+            public static void Main2(string[] args)
+            {
+                // start the main procedure asynchron
+                Task.Run(() => DoIt()).Wait();
+            }
+            public static async void DoIt()
+            {
+                ClassAsyncFromI cai = new ClassAsyncFromI();
+                var cancelTokenSource = new CancellationTokenSource();
+                var ctoken = cancelTokenSource.Token;
+
+                // use methods
+                int ii = await cai.FunctionAsync(ctoken);
+
+
+                // CancellationTokenSource provides the token and have authority to cancel the token
+                Task task = Task.Run(async () =>
+                { // anonymous async call
+                    while (!ctoken.IsCancellationRequested)
+                    {
+                        Console.Write("*passed 1sec");
+                        await Task.Delay(1000);
+                    }
+                }, ctoken);
+                Console.WriteLine("Press key to stop the task");
+                Console.ReadLine();
+                cancelTokenSource.Cancel();
+
+
+                // Warning : replacing "ThrowIfCancellationRequested" -> the task will no longer end in the cancelled state, but in RanToCompletion
+                Task task1 = Task.Run(async () =>
+                { // anonymous async call
+                    while (!ctoken.IsCancellationRequested)
+                    {
+                        Console.Write("*passed 1sec");
+                        await Task.Delay(1000);
+                    }
+                    // acknowledged that your task has been cancelled, -> have to use ThrowIfCancellationRequested
+                    //                                                    to throw an OperationCanceledException exception
+                    ctoken.ThrowIfCancellationRequested(); // to 
+                }, ctoken)
+                    .ContinueWith(t =>
+                    {
+                        t.Exception?.Handle(e => true);
+                        Console.WriteLine("You have canceled the task"); // methods to call if task is canceled
+                    }, TaskContinuationOptions.OnlyOnCanceled);
+
+                Console.WriteLine("Press key to stop the task");
+                Console.ReadLine();
+                cancelTokenSource.Cancel();
+                task.Wait(); // Waits for the Task to complete execution. -> we have continueiF so is not completly canceled
+
+
+                // The use of ThrowIfCancellationRequested is meant to be used from within a Task (not a Thread)
+                // on Task, you do not have to handle the exception yourself (and get the Unhandled Exception error). It will result in leaving the Task, and the Task.IsCancelled property will be True. No exception handling needed.
+                Task t = null;
+                try
+                {
+                    t = Task.Run(() => DoSomething(cancelTokenSource.Token), cancelTokenSource.Token);
+                }
+                catch { }
+                if (t.IsCanceled)
+                {
+                    Console.WriteLine("Canceled!");
+                }
+            }
+
+            // Methods without return value are not allowed in async as Async must return something
+            // When the method does not have a result, use the static accessor
+            public async Task<decimal> DecimalAsync(CancellationToken cancellationToken)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    return 0;
+                //await DoSomething();
+                return 1m;
+            }
+            // When the method has a result, use the static factory function
+            public async Task<int> FunctionAsync(CancellationToken cancellationToken, int defaultValue = 0)
+            {
+                while (true) // your repeting loop here
+                {
+                    if (cancellationToken.IsCancellationRequested) return defaultValue;
+                }
+
+                int ii = 0;
+                DoSomething(cancellationToken); // call required data/business method
+                return ii;
+            }
+
+            private static bool DoSomething(CancellationToken cancelToken)
+            {
+                var i = 2 + 1; Console.WriteLine($"i={i}");
+                return true;
+            }
+            public Task MethodAsync(CancellationToken cancelToken)
+            {
+                var i = 2 + 1; Console.WriteLine($"i={i}");
+                return Task.CompletedTask;
+            }
+
+
+
+            // Normally, you would want to return a Task
+            // The exception is you need to have a void return type (for events).
+            // async methods that return void are special in another aspect: they represent top-level async operations
+
+            // An exception that leaves a top-level asynchronous method "f()" is simply treated like any other unhandled exception.
+            //                   g's exception is never observed
+            // When garbage collector executes, it sees that a task resulted in an exception, and nobody handled the exception -> TaskScheduler.UnobservedTaskException handler runs. 
+            static async void f() => await h();
+            static async Task g() => await h();
+            static async Task h() => Console.WriteLine("I'm h()");
+
+            private void button1_Click(object sender, EventArgs e)
+            {
+                f();
+            }
+            private void button2_Click(object sender, EventArgs e)
+            {
+                g();
+            }
+
+        }
 
 
 

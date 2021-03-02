@@ -58,6 +58,8 @@ namespace CSharp
     // class is implementing ICustomer interface
     class CustomerIntf : ICustomer, ICustomer2 // type "." and select "implement interface"
     {
+        public int Property { get; set; } // must be declared here as it is required from interface
+
         //singature in method in class must match the signature method in interface (same method parameters)
         // explicit interface method
         void ICustomer.Print()

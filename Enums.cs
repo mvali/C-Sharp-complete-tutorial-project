@@ -57,7 +57,7 @@ namespace CSharp
     {
         public string Name { get; set; }
         //public int CGender { get; set; }
-        public Gender CGender { get; set; }
+        internal Gender CGender { get; set; }
     }
 
 }
