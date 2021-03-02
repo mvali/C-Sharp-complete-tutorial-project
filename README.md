@@ -1,2 +1,2 @@
 # C-Sharp-complete-tutorial-project
-Learning C# having all components  in one project, comments included
+All C# components in one project, comments, included
