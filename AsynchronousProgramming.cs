@@ -84,6 +84,7 @@ namespace CSharp
             return toast;
         }
 
+        // sync methods
         private static void ApplyJam(ClassToast toast) => Console.WriteLine("Putting jam on the toast");
         private static void ApplyButter(ClassToast toast) => Console.WriteLine("Putting butter on the toast");
 

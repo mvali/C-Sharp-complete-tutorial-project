@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NamespaceAssembly2;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using AssemblyTwo;// for protected internal example
 
 namespace CSharp
 {
@@ -60,18 +60,28 @@ private protected:  accessed only within its declaring assembly, by code in the 
 
         }
     }
-    public class AssemblyCSharp : AssemblyTwoClass1
+
+    // To use-it you must have assembly "AssemblyTwoClass1"
+    public class AssemblyCSharp : Assembly2Class1
     {
         public void Print()
         {
             // protectedInternalAssembly2ID is in different assembly
 
-            AssemblyTwoClass1 a1 = new AssemblyTwoClass1();
+            Assembly2Class1 a1 = new Assembly2Class1();
             base.protectedInternalAssembly2ID = 101;
 
             AssemblyCSharp a2 = new AssemblyCSharp();
             a2.protectedInternalAssembly2ID = 102;
         }
     }
+}
 
+// this can be different project attached on same solution with reference added ofcourse
+namespace NamespaceAssembly2
+{
+    public class Assembly2Class1
+    {
+        protected internal int protectedInternalAssembly2ID;
+    }
 }
