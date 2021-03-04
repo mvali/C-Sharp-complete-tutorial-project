@@ -23,8 +23,11 @@ namespace CSharp
     Principle 5: Be Stateless
                      Every request is independent and the server does not need to remember your previous request and states.
     */
-    class RestPrinciple
+    [Route("api/[controller]")]
+    [ApiController]
+    class RestPrinciple : ControllerBase  // you can not do that here.. this is a console application :)
     {
+        // use factory on API server for safe connection reusing
         private readonly IHttpClientFactory _httpClientFactory;
         public RestPrinciple(IHttpClientFactory httpClientFactory)
         {
