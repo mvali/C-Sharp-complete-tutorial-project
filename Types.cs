@@ -70,6 +70,7 @@ namespace CSharp
             Console.WriteLine(@"c:\Vali");
             Console.WriteLine($"str value is: {str}");
             Console.WriteLine(String.Format("decimal value of {0}, str is equal to:{1}", de, str));
+            Console.WriteLine(string.Join(",", new int[] { 1, 2, 3, 4 })); // writes: 1,2,3,4 without for cycle
 
             Console.WriteLine("bigNumber= {0} bigNumberSplit(123_456_789_012_345_678)= {1}", bigNumber, bigNumberSplit);
         }

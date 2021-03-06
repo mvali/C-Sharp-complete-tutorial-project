@@ -22,6 +22,12 @@ namespace CSharp
             Methods.EvenNumbersStaticParams(); // valid
             int[] arr = { 1, 2, 3 };
             Methods.EvenNumbersStaticParams(arr); // valid
+
+            int parameter1 = default; // 0 for number type,     false for bool type
+            string parameter2 = default; // null for reference types
+            (parameter1, parameter2) = Methods.MethodWith2RefParam("something");
+
+            var (param1, param2) = Methods.MethodWith2RefParam("something"); // shorter way to declare and take values
         }
     }
     class Methods
@@ -64,6 +70,13 @@ namespace CSharp
         //parameter Arrays "params"
         public static void EvenNumbersStaticParams(params int[] target)
         {
+        }
+
+        // function method
+        static internal (int parameterOutInt, string parameterOutString) MethodWith2RefParam(string parameterIn)
+        {
+            var retVal = string.IsNullOrWhiteSpace(parameterIn) ? (1, "ok") : (2, "maybe");
+            return retVal;
         }
     }
 }

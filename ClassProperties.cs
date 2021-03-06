@@ -20,6 +20,7 @@ namespace CSharp
             // sample for virtual property
             DerivedClassProp instance = new DerivedClassProp() { Id = 2, Name = "behnoud" };
             Console.WriteLine(instance.Name); // will write "test" because property "Name" was overwritten in child class
+            string s = "22";
         }
     }
     class Kid
@@ -32,7 +33,7 @@ namespace CSharp
         private int _Code; // Write only
         public string Email { get; set; }// compiler will set the internal property and logic
         public virtual string NameV { get; set; } // child class can override the property get;set;
-
+        public int PropertyInt { get; set; } = 0; // 0 is default get value
 
         public int ID
         {

@@ -14,7 +14,7 @@ namespace CSharp
     enum Gender
     {
         // if not specified first will start with 0
-        // if first valie is specified(1) the next will be +1 (2,3)
+        // if first value is specified(1) the next will be +1 (2,3)
         Unknown = 1,
         Male = 3,
         Female = 23
