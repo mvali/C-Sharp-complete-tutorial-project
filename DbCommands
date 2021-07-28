@@ -1,0 +1,5 @@
+BACKUP LOG [dbname] TO  DISK = N'C:\temp\tranbackup.TRN' WITH  NOINIT ,  NOUNLOAD ,  NAME = N'tran backup',  NOSKIP ,  STATS = 10,  NOFORMAT 
+DBCC SHRINKFILE('dbname_log')
+execute sp_change_users_login 'Update_One', 'username', 'username'
+EXEC sp_spaceused tblTableName
+EXEC sp_spaceused 'username.TTableName'
